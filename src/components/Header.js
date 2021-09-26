@@ -1,6 +1,6 @@
 import React from 'react';
 import {Container} from "react-bootstrap";
-
+import {Link} from "react-router-dom";
 import ImgMetaMask from '../static/images/metamask.svg'
 import ImgPhantom from '../static/images/phantom_black.svg'
 import ImgCircle from '../static/images/circle.svg'
@@ -14,19 +14,19 @@ function Header() {
                     <Container>
                         <div
                             className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                            <div className='text-white me-4 fs-4 '><img className="navbar-brand " src={ImgArtyste} alt="" height="40" /> Artyste</div>
+                            <div className='text-white me-4 fs-4 '><img className="navbar-brand " src={ImgArtyste} alt="" height="40" />Artyste</div>
 
 
 
                             <ul className="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                                 <li className="nav-item">
-                                    <a className="nav-link text-white" aria-current="page" href="">Home</a>
+                                    <Link className="nav-link text-white" aria-current="page" to="/">Home</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link text-white" aria-current="page" href="">Galleries</a>
+                                    <Link className="nav-link text-white" aria-current="page" to="/galleries/">Galleries</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link text-white" aria-current="page" href="#">Artists</a>
+                                    <Link className="nav-link text-white" aria-current="page" to="/artists/">Artists</Link>
                                 </li>
                             </ul>
 
