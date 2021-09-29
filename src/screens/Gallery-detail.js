@@ -30,7 +30,7 @@ function GalleryDetailScreen({ match }) {
                 </p>
             </div>
         </Container>
-    )
+    );
 }
 
-export default GalleryDetailScreen
+export default GalleryDetailScreen;
