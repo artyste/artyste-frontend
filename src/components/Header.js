@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { LinkContainer } from 'react-router-bootstrap';
+// import { LinkContainer } from 'react-router-bootstrap';
 import ImgMetaMask from '../static/images/metamask.svg';
 import ImgPhantom from '../static/images/phantom_black.svg';
 import ImgCircle from '../static/images/circle.svg';
