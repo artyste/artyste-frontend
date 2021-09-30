@@ -1,11 +1,22 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { Row, Col, Image, ListGroup, Button, Card } from 'react-bootstrap';
-import galleries from '../apiArray/galleries';
+// import galleries from '../apiArray/galleries';
 import Gallery from '../components/Gallery';
+import axios from 'axios'; 
+
 
 function GalleriesScreen({ match }) {
-    const gallery = galleries.find((g) => g.id === match.params.id)
+    const [galleries, setGalleries] = useState([])
+
+    async function get_galleries() {
+        const { data } = await axios.get('https://api.artyste.info/v1/galleries-list/')
+        setGalleries(data)
+    }
+    
+    useEffect(() => {
+        get_galleries();
+    }, [])    
+    
     return (
         <div>
             <h1>Galleries</h1>
