@@ -9,7 +9,7 @@ https://demo.artyste.io
 `/signup` Register page.<br />
 
 **Assets**<br/>
-`/assets/:id` All information about the asset.<br/>
+`/asset/:id` All information about the asset.<br/>
 `/:user_id/assets` page with all assets this user have.<br/>
 `/:user_id/assets/create` page to create news asset.<br/>
 
