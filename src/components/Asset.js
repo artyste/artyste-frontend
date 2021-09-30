@@ -1,8 +1,8 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { FaEthereum } from 'react-icons/fa';
-import { CgDollar } from 'react-icons/cg';
+import img_iconEth from '../static/images/eth_logo.svg';
+import img_iconDol from '../static/images/dollar.svg';
 
 function Asset({ asset }) {
     return (
@@ -29,8 +29,8 @@ function Asset({ asset }) {
                         {asset.sold === true
                         ? <h6 class="text-danger">SOLD</h6>
                         : asset.fiat === 0
-                            ? <text><FaEthereum />{asset.price}</text>
-                            : <text><CgDollar />{asset.price}</text>
+                            ? <text><img src={img_iconEth} width={10} />{asset.price}</text>
+                            : <text><img src={img_iconDol} width={15} />{asset.price}</text>
                         }
                     </div>
                 </Card.Text>

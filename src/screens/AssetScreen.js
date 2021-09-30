@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Row, Col, Image, ListGroup, Button, Card } from 'react-bootstrap';
 import assets from '../apiArray/assets';
-import { FaEthereum } from 'react-icons/fa';
-import { CgDollar } from 'react-icons/cg';
+import img_iconEth from '../static/images/eth_logo.svg';
+import img_iconDol from '../static/images/dollar.svg';
 
 function AssetScreen({ match }) {
     const asset = assets.find((a) => a.id == match.params.id)
@@ -41,13 +41,13 @@ function AssetScreen({ match }) {
 
                         <ListGroup.Item>
                             <h5>Price: {asset.sold === true
-                                    ? <h6 class="text-danger">SOLD</h6>
-                                    : asset.fiat === 0
-                                        ? <text><FaEthereum />{asset.price}</text>
-                                        : <text><CgDollar />{asset.price}</text>
+                                ? <h6 class="text-danger">SOLD</h6>
+                                : asset.fiat === 0
+                                    ? <text><img src={img_iconEth} width={10}/>{asset.price}</text>
+                                    : <text><img src={img_iconDol} width={10}/>{asset.price}</text>
                             }</h5>
                         </ListGroup.Item>
-                        
+
                         <ListGroup.Item>
                             <Button className='btn btn-warning text-dark fw-bold mt-2 mt-xl-0' disabled={asset.sold === true} type='button'><img alt='' src='https://artyste-demo.s3.amazonaws.com/images/metamask.svg?AWSAccessKeyId=AKIAQJ4TKPUZGUAQXN5D&amp;Signature=ldhccsNchFy%2BnZaJH8pLrXo842A%3D&amp;Expires=1632902645' width='20px' class='me-2'></img>Buy with Metamask</Button>
                             <Button className='btn btn-warning text-dark fw-bold mt-2 mt-xl-0' disabled={asset.sold === true} type='button'><img alt='' src='https://artyste-demo.s3.amazonaws.com/images/circle.svg?AWSAccessKeyId=AKIAQJ4TKPUZGUAQXN5D&amp;Signature=GI54SgeihnR1UVBKO6VR%2BENzzM8%3D&amp;Expires=1632902645' width='20px' class='me-2'></img>Buy with Credit Card</Button>
