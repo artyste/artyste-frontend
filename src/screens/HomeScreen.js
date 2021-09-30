@@ -1,11 +1,32 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Row, Col } from 'react-bootstrap';
-import Asset from '../components/Asset';   
+import Asset from '../components/Asset';
 import Gallery from '../components/Gallery';
-import galleries from '../apiArray/galleries';
-import assets from '../apiArray/assets';
+// import galleries from '../apiArray/galleries';
+// import assets from '../apiArray/assets';
+import axios from "axios";
 
 function HomeScreen() {
+    const [assets, setAssets] = useState([])
+    const [galleries, setGalleries] = useState([])
+
+    async function get_assets() {
+        const { data } = await axios.get('https://api.artyste.info/v1/assets-list/')
+        setAssets(data)
+    }
+
+    async function get_galleries() {
+        const { data } = await axios.get('https://api.artyste.info/v1/galleries-list/')
+        setGalleries(data)
+    }
+
+    useEffect(() => {
+        console.log('use effect');
+        get_assets();
+        get_galleries();
+    }, [])
+
+
     return (
         <div>
             <h1>Top Artworks</h1>
