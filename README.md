@@ -11,7 +11,7 @@ https://demo.artyste.io
 **Assets**<br/>
 `/asset/:id` All information about the asset.<br/>
 `/:user_id/assets` page with all assets this user have.<br/>
-`/:user_id/assets/create` page to create news asset.<br/>
+`/:user_id/assets/create` page to create new asset.<br/>
 
 **Artist**<br/>
 `/artists` Artists - Feature artists, top artists and other filters.
