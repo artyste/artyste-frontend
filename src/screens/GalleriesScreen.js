@@ -14,6 +14,7 @@ function GalleriesScreen({ match }) {
     }
     
     useEffect(() => {
+        console.log('use effect triggered');
         get_galleries();
     }, [])    
     
