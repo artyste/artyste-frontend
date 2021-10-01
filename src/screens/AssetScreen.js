@@ -1,16 +1,30 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import { useParams } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import { Row, Col, Image, ListGroup, Button, Card } from 'react-bootstrap';
-import assets from '../apiArray/assets';
 import img_iconEth from '../static/images/eth_logo.svg';
 import img_iconDol from '../static/images/dollar.svg';
+import axios from "axios";
 
 function AssetScreen({ match }) {
-    const asset = assets.find((a) => a.id == match.params.id)
+
+    const [asset, setAsset] = useState([])
+    const { id } = useParams();
+
+    async function get_asset(id) {
+        const { data } = await axios.get(`https://api.artyste.info/v1/asset/${id}/`)
+        setAsset(data[0])
+    }
+
+    useEffect(() => {
+        get_asset(id);
+    }, [])
+
     return (
         <div>
             <Link to='/' className='btn btn-light my-3'>Go Back</Link>
             <Row>
+
                 <Col md={6}>
                     <Image src={asset.fileimage} alt={asset.title} fluid/>
                 </Col>
