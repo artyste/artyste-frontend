@@ -1,24 +1,36 @@
 import React, {useState, useEffect} from 'react';
 import { useParams } from "react-router-dom";
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { Row, Col, Image, ListGroup, Button, Card } from 'react-bootstrap';
 import img_iconEth from '../static/images/eth_logo.svg';
 import img_iconDol from '../static/images/dollar.svg';
 import axios from "axios";
 
+import Asset from '../components/Asset';
+import Loader from '../components/Loader';
+import Message from '../components/Message';
+import { listAssetDetails } from '../actions/assetActions';
+
 function AssetScreen({ match }) {
+   
+    const dispatch = useDispatch()
+    const assetDetails = useSelector( state => state.assetDetails)
+    const { loading, error, asset } = assetDetails
 
-    const [asset, setAsset] = useState([])
-    const { id } = useParams();
+    // const [asset, setAsset] = useState([])
+    // const { id } = useParams();
+    
+    useEffect(() => {
+        dispatch(listAssetDetails(match.params.id))
 
-    async function get_asset(id) {
+/*    async function get_asset(id) {
         const { data } = await axios.get(`https://api.artyste.info/v1/asset/${id}/`)
         setAsset(data[0])
     }
-
-    useEffect(() => {
-        get_asset(id);
-    }, [])
+        get_asset(id) */
+        
+    }, [dispatch])
 
     return (
         <div>
@@ -79,4 +91,3 @@ function AssetScreen({ match }) {
 }
 
 export default AssetScreen;
-
