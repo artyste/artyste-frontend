@@ -1,23 +1,29 @@
 import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { Row, Col, Image, ListGroup, Button, Card } from 'react-bootstrap';
 // import galleries from '../apiArray/galleries';
 import Gallery from '../components/Gallery';
 import axios from 'axios'; 
-
+import { listGalleries } from '../actions/galleryActions';
 
 function GalleriesScreen({ match }) {
-    const [galleries, setGalleries] = useState([])
+    const dispatch = useDispatch()
+    const galleryList = useSelector( state => state.galleryList )
+    const { error, loading, galleries } = galleryList
+    // const [galleries, setGalleries] = useState([])
 
-    async function get_galleries() {
+/*     async function get_galleries() {
         const { data } = await axios.get('https://api.artyste.info/v1/galleries-list/')
         setGalleries(data)
     }
-    
+     */
     useEffect(() => {
-        console.log('use effect triggered');
-        get_galleries();
-    }, [])    
+        dispatch(listGalleries())
+/*         get_assets();
+        get_galleries(); */
+    }, [dispatch])
+
     
     return (
         <div>
@@ -36,3 +42,4 @@ function GalleriesScreen({ match }) {
 }
 
 export default GalleriesScreen;
+
