@@ -7,7 +7,7 @@ import Message from '../components/Message';
 import Gallery from '../components/Gallery';
 // import galleries from '../apiArray/galleries';
 // import assets from '../apiArray/assets';
-// import axios from "axios"; 
+// import axios from "axios";
 import { listAssets } from '../actions/assetActions';
 import { listGalleries } from '../actions/galleryActions';
 
@@ -44,10 +44,10 @@ function HomeScreen() {
             <hr/>
             {loading ? <Loader />
                 : error ? <Message variant='danger'>{error}</Message>
-                    :             
+                    :
                     <Row>
-                        {assets.map(asset => (
-                            <Col key={asset.id} sm={12} md={6} lg={4} xl={3}>
+                        {assets.slice(0, 8).map(asset => (
+                            <Col key={asset.id} sm={12} md={6} lg={6} xl={3}>
                                 <Asset asset={asset} />
                             </Col>
                         ))}
