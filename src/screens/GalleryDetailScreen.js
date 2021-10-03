@@ -1,35 +1,60 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { Container } from 'react-bootstrap';
 import { Row, Col, Image, ListGroup, Button, Card } from 'react-bootstrap';
 import Gallery from '../components/Gallery';
-import galleries from '../apiArray/galleries';
-import louvre from '../apiArray/louvre';
 import GalleriesScreen from './GalleriesScreen';
+import Loader from '../components/Loader';
+import Message from '../components/Message';
+import { listGalleryDetails } from '../actions/galleryActions';
+import axios from "axios";
 
 
-function GalleryDetailScreen({ match }) {
-    const galleryDetail = galleries.find((g) => g.id === match.params.id)
+function GalleryDetailScreen() {
+
+    const [gallery, setGallery] = useState([])
+    const { slug } = useParams();
+
+    async function get_gallery(slug) {
+
+        const { data } = await axios.get(`https://api.artyste.info/v1/gallery/${slug}/`)
+        console.log(data[9].gallery);
+        setGallery(data[9].gallery)
+    }
+
+    useEffect(() => {
+        console.log(slug);
+        get_gallery(slug);
+    }, [])
+
     return (
-        <Container>
+        <div>
+
             <Link to='/galleries' className='btn btn-light my-3'>Go Back</Link>
-            <Image src={galleries.imgbanner} alt={galleries.name} fluid />
+
+            <h1>{gallery.name}</h1>
+            <hr/>
+            <Image src={gallery.banner} alt={gallery.name} fluid/>
+
             <Row>
                 <Col>
 
                 </Col>
             </Row>
-                
+
             <div>
                 <p><a href="http://app.arthology.io/gallery/starship" target="_blank">http://app.arthology.io/gallery/:slug</a></p>
 
                 <p><a href="https://github.com/artyste/artyste-backend-demo/blob/master/art/templates/art/gallery.html" target="_blank">https://github.com/artyste/artyste-backend-demo/blob/master/art/templates/art/gallery.html</a></p>
 
                 <p>Api End-point<br/>
-                <a href="https://api.artyste.info/v1/gallery/starship/" target="_blank">https://api.artyste.info/v1/gallery/starship/</a>
+                    <a href="https://api.artyste.info/v1/gallery/starship/" target="_blank">https://api.artyste.info/v1/gallery/starship/</a>
                 </p>
             </div>
-        </Container>
+
+        </div>
+
     );
 }
 
