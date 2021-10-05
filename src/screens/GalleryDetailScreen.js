@@ -9,7 +9,7 @@ import Loader from '../components/Loader';
 import Message from '../components/Message';
 import { listGalleryDetails } from '../actions/galleryActions';
 import axios from "axios";
-
+ 
 
 function GalleryDetailScreen() {
 
@@ -17,41 +17,43 @@ function GalleryDetailScreen() {
     const { slug } = useParams();
 
     async function get_gallery(slug) {
-
         const { data } = await axios.get(`https://api.artyste.info/v1/gallery/${slug}/`)
-        console.log(data[9].gallery);
-        setGallery(data[9].gallery)
+        setGallery(data[0])
     }
+        get_gallery(slug)    
 
-    useEffect(() => {
-        console.log(slug);
-        get_gallery(slug);
-    }, [])
+/*  const dispatch = useDispatch()
+    const galleryDetails = useSelector((state) => state.galleryDetails)
+    const { loading, error, gallery } = galleryDetails
 
+     useEffect(() => {
+        dispatch(listGalleryDetails(match.params.id))
+    }, [dispatch, match])
+ */
+    
     return (
         <div>
-
             <Link to='/galleries' className='btn btn-light my-3'>Go Back</Link>
 
             <h1>{gallery.name}</h1>
-            <hr/>
-            <Image src={gallery.banner} alt={gallery.name} fluid/>
+            <hr/> 
+            <Image src={gallery.imgbanner} alt={gallery.name} fluid/>
+            
+                <Row>
+                    <Col>
+                        
+                    </Col>
+                </Row>
+                                
+                <div>
+                    <p><a href="http://app.arthology.io/gallery/starship" target="_blank">http://app.arthology.io/gallery/:slug</a></p>
 
-            <Row>
-                <Col>
+                    <p><a href="https://github.com/artyste/artyste-backend-demo/blob/master/art/templates/art/gallery.html" target="_blank">https://github.com/artyste/artyste-backend-demo/blob/master/art/templates/art/gallery.html</a></p>
 
-                </Col>
-            </Row>
-
-            <div>
-                <p><a href="http://app.arthology.io/gallery/starship" target="_blank">http://app.arthology.io/gallery/:slug</a></p>
-
-                <p><a href="https://github.com/artyste/artyste-backend-demo/blob/master/art/templates/art/gallery.html" target="_blank">https://github.com/artyste/artyste-backend-demo/blob/master/art/templates/art/gallery.html</a></p>
-
-                <p>Api End-point<br/>
+                    <p>Api End-point<br/>
                     <a href="https://api.artyste.info/v1/gallery/starship/" target="_blank">https://api.artyste.info/v1/gallery/starship/</a>
-                </p>
-            </div>
+                    </p>
+                </div>
 
         </div>
 

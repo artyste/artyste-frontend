@@ -11,8 +11,8 @@ import GalleryDetailScreen from './screens/GalleryDetailScreen';
 // import Galleries from "./screens/Galleries";
 // import Assets from "./screens/Assets";
 import AssetDetail from "./screens/Asset-detail";
-import Signin from "./screens/Signin";
-import Signup from "./screens/Signup";
+import SignInScreen from "./screens/SignInScreen";
+import SignUpScreen from "./screens/SignUpScreen";
 // import GalleryDetail from "./screens/Gallery-detail";
 
 function App() {
@@ -23,8 +23,8 @@ function App() {
         <Container>
 
             <Route path='/' component={ HomeScreen } exact />
-            <Route path='/signin' component={ Signin } />
-            <Route path='/signup' component={ Signup } />
+            <Route path='/signin' component={ SignInScreen } />
+            <Route path='/signup' component={ SignUpScreen } />
 
             <Route path='/galleries' component={ GalleriesScreen } />
             {/*<Route path='/artists' component={ Galleries }/>*/}

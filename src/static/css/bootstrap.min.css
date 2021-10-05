@@ -105,13 +105,6 @@ hr:not([size]) {
     font-size: calc(1.375rem + 1.5vw)
 }
 
-.square {
-    width: 100%;
-    padding-bottom: 100%;
-    background-size: cover;
-    background-position: center;
-}
-
 @media (min-width: 1200px) {
     .h1, h1 {
         font-size: 2.5rem

@@ -22,8 +22,8 @@ export const listAssets = () => async (dispatch) => {
     }catch(error){
         dispatch({ 
             type: ASSET_LIST_FAIL,
-            payload: error.response && error.response.data.message
-              ? error.response.data.message
+            payload: error.response && error.response.data.detail
+              ? error.response.data.detail
               : error.message,
         })
     }
@@ -34,7 +34,6 @@ export const listAssetDetails = (id) => async (dispatch) => {
     try{
         dispatch({ type: ASSET_DETAILS_REQUEST })
 
-        // const { data } = await axios.get('https://api.artyste.info/v1/assets-list/')
         const { data } = await axios.get(`https://api.artyste.info/v1/asset/${id}`)
 
         dispatch({ 
@@ -44,8 +43,8 @@ export const listAssetDetails = (id) => async (dispatch) => {
     }catch(error){
         dispatch({ 
             type: ASSET_DETAILS_FAIL,
-            payload: error.response && error.response.data.message
-              ? error.response.data.message
+            payload: error.response && error.response.data.detail
+              ? error.response.data.detail
               : error.message,
         })
     }

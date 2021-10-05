@@ -9,7 +9,7 @@ import {
  } from '../constants/galleryConstants'; 
 
 export const galleryListReducer = (state = { galleries: [] }, action) => {
-    switch(action.type){
+    switch(action.type) {
         case GALLERY_LIST_REQUEST:
             return { loading: true, galleries:[] }
 
@@ -17,6 +17,22 @@ export const galleryListReducer = (state = { galleries: [] }, action) => {
             return { loading: false, galleries: action.payload }
 
         case GALLERY_LIST_FAIL:
+            return { loading: false, error: action.payload }
+
+        default:
+            return state
+    }
+}
+
+export const galleryDetailsReducer = (state = { gallery: {} }, action) => {
+    switch(action.type){
+        case GALLERY_DETAILS_REQUEST:
+            return { loading: true, ...state }
+
+        case GALLERY_DETAILS_SUCCESS:
+            return { loading: false, gallery: action.payload }
+
+        case GALLERY_DETAILS_FAIL:
             return { loading: false, error: action.payload }
 
         default:

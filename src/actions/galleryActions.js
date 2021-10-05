@@ -9,7 +9,7 @@ import {
     GALLERY_DETAILS_FAIL,
  } from '../constants/galleryConstants'; 
 
- export const listGalleries = () => async (dispatch) => {
+export const listGalleries = () => async (dispatch) => {
     try{
         dispatch({ type: GALLERY_LIST_REQUEST })
 
@@ -30,12 +30,11 @@ import {
 
 }
 
-/* export const listGalleryDetails = (id) => async (dispatch) => {
+export const listGalleryDetails = (slug) => async (dispatch) => {
     try{
         dispatch({ type: GALLERY_DETAILS_REQUEST })
 
-        // const { data } = await axios.get('https://api.artyste.info/v1/assets-list/')
-        const { data } = await axios.get(`https://api.artyste.info/v1/asset/${id}`)
+        const { data } = await axios.get( `https://api.artyste.info/v1/gallery/${slug}`)
 
         dispatch({ 
             type: GALLERY_DETAILS_SUCCESS,
@@ -50,4 +49,5 @@ import {
         })
     }
 
-} */
+}
+

@@ -1,13 +1,25 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { Navbar, Nav, Container, Row, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-// import { LinkContainer } from 'react-router-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import ImgMetaMask from '../static/images/metamask.svg';
 import ImgPhantom from '../static/images/phantom_black.svg';
 import ImgCircle from '../static/images/circle.svg';
 import ImgArtyste from '../static/images/artyste_logo.svg';
+import { logout } from '../actions/userActions';
 
 function Header() {
+
+    const userLogin = useSelector(state => state.userLogin)
+    const { userInfo } = userLogin
+
+    const dispatch = useDispatch()
+
+    const logoutHandler = () => {
+        dispatch(logout())
+    }
+
     return (
         <header className="p-3 bg-gray-dark">
             <Container>
@@ -24,6 +36,21 @@ function Header() {
                                 <Link className="nav-link text-white" aria-current="page" to="/artists/">Artists</Link>
                             </li>
                         </ul>
+
+                        {userInfo ? (
+                                <NavDropdown title={userInfo.name} id='username'>
+                                    <LinkContainer to='/profile'>
+                                        <NavDropdown.Item className="fa fa-user-edit me-2">Profile</NavDropdown.Item>
+                                    </LinkContainer>
+
+                                    <NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>
+
+                                </NavDropdown>
+                            ) : (
+                                    <LinkContainer to='/signin'>
+                                        <Nav.Link><i className="fas fa-user"></i>Login</Nav.Link>
+                                    </LinkContainer>
+                                )}
 
                         <div className="text-end d-flex">
                             <div className="btn-group me-2">

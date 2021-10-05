@@ -9,7 +9,7 @@ import {
  } from '../constants/assetConstants'; 
 
 export const assetListReducer = (state = { assets: [] }, action) => {
-    switch(action.type){
+    switch(action.type) {
         case ASSET_LIST_REQUEST:
             return { loading: true, assets:[] }
 
@@ -24,7 +24,7 @@ export const assetListReducer = (state = { assets: [] }, action) => {
     }
 }
 
-export const assetDetailsReducer = (state = { asset: [] }, action) => {
+export const assetDetailsReducer = (state = { asset: {} }, action) => {
     switch(action.type){
         case ASSET_DETAILS_REQUEST:
             return { loading: true, ...state }
