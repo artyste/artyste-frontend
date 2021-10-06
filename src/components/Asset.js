@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card } from 'react-bootstrap';
+import { Card, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import img_iconEth from '../static/images/eth_logo.svg';
 import img_iconDol from '../static/images/dollar.svg';
@@ -7,35 +7,45 @@ import img_iconDol from '../static/images/dollar.svg';
 function Asset({ asset }) {
     return (
         <Card className="my-3 p-3 rounded">
-            <Link to={`/asset/${asset.id}`}>
-                <Card.Img src={asset.fileimage}/>
+
+            <Link className="stretched-link text-dark" to={`/asset/${asset.id}`}>
+                <div className="square" style={{ backgroundImage: `url(${asset.fileimage})`}} />
             </Link>
 
-            <Card.Body>
-                <Link to={`/asset/${asset.id}`}>
-                    <Card.Title as="div" class="fw-bold col-6">
-                        <strong>{asset.title}</strong>
-                    </Card.Title>
-                </Link>
+            <Card.Body className="px-0">
+                <Row>
 
-                <Card.Text as="div">
-                    <div class="col-6">
-                        {asset.artistFirstName} {asset.artistLastName}
+                    <div className="col-6">
+                        <div className="fw-bold">{asset.title}</div>
+                        <small>{asset.artistFirstName} {asset.artistLastName}</small>
                     </div>
-                </Card.Text>
 
-                <Card.Text as="div">
-                    <div className="my-3">
+                    <div className="col-6 text-end">
                         {asset.sold === true
-                        ? <h6 class="text-danger">SOLD</h6>
-                        : asset.fiat === 0
-                            ? <text><img src={img_iconEth} width={10} />{asset.price}</text>
-                            : <text><img src={img_iconDol} width={15} />{asset.price}</text>
+                            ? <h6 class="text-danger">SOLD</h6>
+                            :
+
+                            <div className="mb-0 ">
+                                <div>Price</div>
+                                <div className="h6">
+                                    {asset.fiat === 0 ?
+                                        (
+                                            <div>
+                                                <img className="me-2" src={img_iconEth} height="20px"/> {asset.price}
+                                            </div>
+                                        ) : (
+                                            <div>
+                                                <img className="me-2" src={img_iconDol} width="20px"/> {asset.price}
+                                            </div>
+                                        )}
+                                </div>
+                            </div>
                         }
                     </div>
-                </Card.Text>
 
+                </Row>
             </Card.Body>
+
         </Card>
     )
 }

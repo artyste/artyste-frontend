@@ -27,9 +27,9 @@ function HomeScreen() {
             <hr/>
             {loading ? <Loader />
                 : error ? <Message variant='danger'>{error}</Message>
-                    :           
+                    :
                     <Row>
-                        {assets.map(asset => (
+                        {assets.slice(0, 8).map(asset => (
                             <Col key={asset.id} sm={12} md={6} lg={4} xl={3}>
                                 <Asset asset={asset} />
                             </Col>
